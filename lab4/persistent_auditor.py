@@ -44,12 +44,19 @@ def get_valid_input():
     global inventory, failed, history
 
     while True:
-        stock = input("Enter stock to add (or quit): ").strip()
+        stock = input("Enter stock to add (or reset / quit): ").strip()
 
         if stock.lower() == "quit":
             save_inventory(inventory, history)
             print("Inventory saved to inventory.txt")
             break
+        
+        if stock.lower() == "reset":
+            inventory = 0
+            history.clear()
+            save_inventory(inventory, history)
+            print("Stock and transaction history cleared.")
+            continue
 
         try:
             value = int(stock)
